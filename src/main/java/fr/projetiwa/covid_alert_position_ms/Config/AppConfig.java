@@ -1,0 +1,18 @@
+package fr.projetiwa.covid_alert_position_ms.Config;
+
+import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+
+import java.util.ArrayList;
+
+@Configuration
+public class AppConfig {
+    @Bean("PositionService")
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public PositionService positionService(){
+        return new PositionService(new ArrayList<>());
+    }
+}
