@@ -7,12 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 @Configuration
 public class AppConfig {
     @Bean("PositionService")
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public PositionService positionService(){
-        return new PositionService(new ArrayList<>());
+        return new PositionService(new LinkedList<>());
     }
 }
