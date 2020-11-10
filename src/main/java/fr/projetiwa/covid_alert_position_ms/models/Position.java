@@ -6,22 +6,21 @@ import javax.persistence.*;
 import java.util.List;
 
 
-@Entity(name="position")
-@Access(AccessType.FIELD)
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class Position extends SuperClassPosition {
-    @ManyToMany(mappedBy = "position")
-    @JsonIgnore // Pour ne pas produire des cycles
-    private List<Person> persons;
 
-    public List<Person> getPersons() {
-        return persons;
+public class Position extends SuperClassPosition {
+
+    String userId;
+
+    public String getUserId() {
+        return userId;
     }
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Position() {
+
 
     }
 }
