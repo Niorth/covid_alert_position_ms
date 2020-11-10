@@ -37,7 +37,8 @@ public class PositionsController {
 
     @GetMapping
     public List<Position> list () {
-        return positionService.getPositionList(); }
+        return positionService.getPositionList();
+    }
 
     @PostMapping("add/backup")
     public void addPositionToBackUp(@RequestBody Position position){

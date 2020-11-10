@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Set position</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Declare your position</h1>
+    <form id="ipForm" action="GeoIP" method="POST">
+        <input type="submit" name="submit" value="submit" />
+    </form>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $( "#ipForm" ).submit(function( event ) {
+        event.preventDefault();
+        getLocation()
+    });
+    
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            //TODO : Error box
+        }
+    }
+
+    function showPosition(position) {
+        console.log(position.coords.latitude)
+        console.log(position.coords.longitude);
+    }
+</script>
+</html>
