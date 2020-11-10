@@ -21,11 +21,12 @@ public class PositionService {
     public void setPositionList(List<Position> positionList) {
         this.positionList = positionList;
     }
+
     public void removePosition(Position position){
         this.positionList.remove(position);
     }
-    public void addPosition(Position position){
 
+    public void addPosition(Position position){
         this.positionList.add(position);
     }
 

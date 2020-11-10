@@ -8,22 +8,10 @@ import java.util.Date;
 @MappedSuperclass
 public class SuperClassPosition {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long positionId;
-    protected Float longitude;
-
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     protected Timestamp positionDate;
+    protected Float longitude;
     protected Float latitude;
-
-    public long getPositionId() {
-        return positionId;
-    }
-
-    public void setPositionId(long positionId) {
-        this.positionId = positionId;
-    }
 
     public Float getLatitude() {
         return latitude;
@@ -49,8 +37,7 @@ public class SuperClassPosition {
         this.positionDate = positionDate;
     }
 
-    public SuperClassPosition(long positionId, Float longitude, Timestamp positionDate, Float latitude) {
-        this.positionId = positionId;
+    public SuperClassPosition(Float longitude, Timestamp positionDate, Float latitude) {
         this.longitude = longitude;
         this.positionDate = positionDate;
         this.latitude = latitude;
