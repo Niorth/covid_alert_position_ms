@@ -4,6 +4,7 @@ package fr.projetiwa.covid_alert_position_ms.Listeners;
 
 import fr.projetiwa.covid_alert_position_ms.models.Position;
 import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import fr.projetiwa.covid_alert_position_ms.util.Function;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,6 +32,9 @@ public class KafkaListener {
     @Autowired
     private PositionService positionService;
 
+    @Autowired
+    private Function service;
+
     @org.springframework.kafka.annotation.KafkaListener(id = "thing4", topicPartitions =
             { @TopicPartition(topic = "addPosition", partitions = { "0" },
                     partitionOffsets = @PartitionOffset(partition = "*", initialOffset = "0"))
@@ -42,10 +46,14 @@ public class KafkaListener {
         cal.add(Calendar.DATE, -7);
         Date dateBefore7Days = cal.getTime();
         System.out.println(key);
+        //afin de vérifier si les localisations dans le Singleton sont bien inférieur à 7j
+        service.verifyPositionList();
         if(new Timestamp(time).after(new Timestamp(dateBefore7Days.getTime()))){
-
+         
             //on passe le temps du kafka dans la position
             position.setPositionDate(new Timestamp(time));
+            //on passe la clé dans la position
+            position.setUserId(key);
             positionService.addPosition(position);
         }
 
