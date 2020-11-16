@@ -1,4 +1,0 @@
-server:
-  port: 30044
-app:
-  version: 1.0.0
