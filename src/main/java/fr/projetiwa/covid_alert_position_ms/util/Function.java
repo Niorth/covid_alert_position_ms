@@ -1,5 +1,6 @@
 package fr.projetiwa.covid_alert_position_ms.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.projetiwa.covid_alert_position_ms.models.Position;
 import fr.projetiwa.covid_alert_position_ms.models.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ public class Function {
     public static int compareDates(Date date1, Date date2) {
         DateFormat dateFormat = dateFormatThreadLocal.get();
         return dateFormat.format(date1).compareTo(dateFormat.format(date2));
+    }
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     @Autowired
     private PositionService positionService;

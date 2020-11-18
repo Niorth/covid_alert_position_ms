@@ -38,11 +38,9 @@ public class KafkaListener {
         cal.setTime(new Date());
         cal.add(Calendar.DATE, -7);
         Date dateBefore7Days = cal.getTime();
-        System.out.println(key);
         //afin de vérifier si les localisations dans le Singleton sont bien inférieur à 7j
         service.verifyPositionList();
         if(new Timestamp(time).after(new Timestamp(dateBefore7Days.getTime()))){
-
             //on passe le temps du kafka dans la position
             position.setPositionDate(new Timestamp(time));
             //on passe la clé dans la position
