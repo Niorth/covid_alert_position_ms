@@ -15,7 +15,7 @@ import java.util.Date;
 public class PositionServiceTest {
     @Autowired
     private PositionService positionService;
-    
+
     @Test
     @DisplayName("Test clear positions")
     public void clearPositionsTest(){
