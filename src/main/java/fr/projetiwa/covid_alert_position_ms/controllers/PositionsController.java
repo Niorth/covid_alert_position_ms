@@ -22,8 +22,6 @@ public class PositionsController {
 
     @Autowired
     private HttpServletRequest request;
-
-
 /*
 method for test
 * */
@@ -52,8 +50,13 @@ method for test
 
 
     @PostMapping("add/backup")
-    public void addPositionToBackUp(@RequestBody Position position){
+    public boolean addPositionToBackUp(@RequestBody Position position){
         //send a kafka to pipe
-        kafkaTemplate.send("addSusPosition",position);
+        try {
+            kafkaTemplate.send("addSusPosition", position);
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 }

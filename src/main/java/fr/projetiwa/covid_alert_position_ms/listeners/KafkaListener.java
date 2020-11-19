@@ -1,15 +1,11 @@
-package fr.projetiwa.covid_alert_position_ms.Listeners;
+package fr.projetiwa.covid_alert_position_ms.listeners;
 
 
 
 import fr.projetiwa.covid_alert_position_ms.models.Position;
 import fr.projetiwa.covid_alert_position_ms.models.PositionService;
 import fr.projetiwa.covid_alert_position_ms.util.Function;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 
 import org.springframework.kafka.annotation.PartitionOffset;
 import org.springframework.kafka.annotation.TopicPartition;
@@ -17,9 +13,6 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
-import org.springframework.web.client.RestTemplate;
-
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,11 +38,9 @@ public class KafkaListener {
         cal.setTime(new Date());
         cal.add(Calendar.DATE, -7);
         Date dateBefore7Days = cal.getTime();
-        System.out.println(key);
         //afin de vérifier si les localisations dans le Singleton sont bien inférieur à 7j
         service.verifyPositionList();
         if(new Timestamp(time).after(new Timestamp(dateBefore7Days.getTime()))){
-         
             //on passe le temps du kafka dans la position
             position.setPositionDate(new Timestamp(time));
             //on passe la clé dans la position

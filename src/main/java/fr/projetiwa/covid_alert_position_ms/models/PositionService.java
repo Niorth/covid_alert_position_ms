@@ -30,6 +30,10 @@ public class PositionService {
         this.positionList.add(position);
     }
 
+    public void clearPositions(){
+        this.positionList.clear();
+    }
+
     public PositionService(List<Position> positionList) {
         this.positionList = positionList;
         this.lastVerify = null;

@@ -1,7 +1,6 @@
-package fr.projetiwa.covid_alert_position_ms.Config;
+package fr.projetiwa.covid_alert_position_ms.config;
 
 
-import fr.projetiwa.covid_alert_position_ms.models.Position;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
