@@ -30,7 +30,7 @@
             contentType: 'application/json',
             url: "/positions/setPositionKafka",
             dataType: 'json',
-            data: JSON.stringify({"latitude": position.coords.latitude, "longitude": position.coords.longitude}),
+            data: JSON.stringify({"latitude": position.coords.latitude, "longitude": position.coords.longitude, "accuracy": position.coords.accuracy}),
             timeout: 100000,
             success: function (id) {
                 console.log("SUCCESS: ", id);

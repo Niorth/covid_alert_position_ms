@@ -37,7 +37,8 @@ method for test
         pos.setLatitude(location.getLatitude());
         pos.setPositionDate(new Timestamp((new Date()).getTime()));
         pos.setUserId(user.getName());
-        kafkaTemplate.send("addPosition","iamakey",pos);
+        pos.setAccuracy(location.getAccuracy());
+        kafkaTemplate.send("addPosition",user.getName(), pos);
         return "{\"success\":1}";
     }
 
