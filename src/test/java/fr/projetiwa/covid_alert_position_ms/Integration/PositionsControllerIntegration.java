@@ -52,7 +52,6 @@ public class PositionsControllerIntegration {
         positionService.clearPositions();
         positionService.addPosition(new Position(1f,new Timestamp(new Date().getTime()),1f,"test"));
         positionService.addPosition(new Position(1f,new Timestamp(new Date().getTime()),1f,"test"));
-
         mockMvc.perform(get("/positions",1))
                 // Validate the status code and content type
                 .andExpect(status().isOk())
