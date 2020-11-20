@@ -20,7 +20,7 @@ public class PositionServiceTest {
     @DisplayName("Test clear positions")
     public void clearPositionsTest(){
         positionService.clearPositions();
-        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test");
+        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0);
         positionService.addPosition(pos);
         positionService.clearPositions();
         Assertions.assertEquals(0,positionService.getPositionList().size(),"should be the same");
@@ -30,7 +30,7 @@ public class PositionServiceTest {
     @DisplayName("Test add position")
     public void addPositionTest(){
         positionService.clearPositions();
-        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test");
+        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0);
         positionService.addPosition(pos);
         Assertions.assertEquals(pos,positionService.getPositionList().get(positionService.getPositionList().size()-1),"should be the same");
 
@@ -40,8 +40,8 @@ public class PositionServiceTest {
     @DisplayName("Test remove position")
     public void removePositionTest(){
         positionService.clearPositions();
-        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test");
-        Position pos2 = new Position(2f,new Timestamp(new Date().getTime()),2f,"test");
+        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0);
+        Position pos2 = new Position(2f,new Timestamp(new Date().getTime()),2f,"test", 0);
         positionService.addPosition(pos);
         positionService.addPosition(pos2);
         positionService.removePosition(pos2);
@@ -55,8 +55,8 @@ public class PositionServiceTest {
     @DisplayName("Test consult positions")
     public void consultPositionTest(){
         positionService.clearPositions();
-        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test");
-        Position pos2 = new Position(2f,new Timestamp(new Date().getTime()),2f,"test");
+        Position pos = new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0);
+        Position pos2 = new Position(2f,new Timestamp(new Date().getTime()),2f,"test", 0);
         positionService.addPosition(pos);
         positionService.addPosition(pos2);
         Assertions.assertEquals(2,positionService.getPositionList().size(),"should be the same");

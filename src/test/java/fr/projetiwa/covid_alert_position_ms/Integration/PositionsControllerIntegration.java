@@ -50,8 +50,8 @@ public class PositionsControllerIntegration {
     @DisplayName("GET /positions - Found")
     void testGetPositionsFound() throws Exception {
         positionService.clearPositions();
-        positionService.addPosition(new Position(1f,new Timestamp(new Date().getTime()),1f,"test"));
-        positionService.addPosition(new Position(1f,new Timestamp(new Date().getTime()),1f,"test"));
+        positionService.addPosition(new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0));
+        positionService.addPosition(new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0));
         mockMvc.perform(get("/positions",1))
                 // Validate the status code and content type
                 .andExpect(status().isOk())
