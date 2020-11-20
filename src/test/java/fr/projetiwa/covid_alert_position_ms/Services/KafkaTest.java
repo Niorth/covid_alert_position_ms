@@ -29,7 +29,7 @@ public class KafkaTest {
 
     @Test
     public void test() throws Exception{
-        Position position = new Position(1f,new Timestamp(new Date().getTime()),1f,"test");
+        Position position = new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0);
         kafkaTemplate.send("testKafkaP",position);
         consumer.subscribe(Arrays.asList("testKafkaP"));
         List<Position> list = new ArrayList<>();
