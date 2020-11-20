@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.KafkaTemplate;
 
+import java.io.PrintStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,15 +30,15 @@ public class KafkaTest {
 
     @Test
     public void test() throws Exception{
-        Position position = new Position(1f,new Timestamp(new Date().getTime()),1f,"test");
+        Position position = new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0);
         kafkaTemplate.send("testKafkaP",position);
         consumer.subscribe(Arrays.asList("testKafkaP"));
         List<Position> list = new ArrayList<>();
-        ConsumerRecords<String, Position> records = consumer.poll(5000);
-        for (ConsumerRecord<String, Position> record : records)
+        ConsumerRecords<String, Position> records = consumer.poll(50000);
+        for (ConsumerRecord<String, Position> record : records) {
             list.add(record.value());
-
-        assertThat(list.get(list.size()-1) == position).isTrue();
+        }
+        assertThat(list.get(list.size()-1).getUserId().equals(position.getUserId())).isTrue();
 
 
 
