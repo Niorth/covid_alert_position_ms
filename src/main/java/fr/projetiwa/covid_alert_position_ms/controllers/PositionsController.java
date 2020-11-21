@@ -82,6 +82,7 @@ method for test
     @PostMapping("/setSuspicious")
     public String setPostionToSuspicous(@RequestHeader (name="Authorization") String token){
         String payload = token.split("\\.")[1];
+        int positionSetToSuspicous_len = 0;
         try{
             String str = new String(Base64.decodeBase64(payload),"UTF-8");
             JSONObject jsonObject = new JSONObject(str);
@@ -95,6 +96,7 @@ method for test
             for(Position p : positions){
                 if(p.getPositionDate().after(dateBefore7Days)){
                     kafkaTemplate.send("addSusPosition", p);
+                    positionSetToSuspicous_len++;
                 }
             }
 
@@ -102,7 +104,7 @@ method for test
             e.printStackTrace();
         }
 
-        return "{\"success\":1}";
+        return "{\"success\":1,\"setToSuspicious\":"+positionSetToSuspicous_len+"}";
     }
 
 }
