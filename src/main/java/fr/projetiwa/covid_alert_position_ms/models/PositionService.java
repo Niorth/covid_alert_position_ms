@@ -1,5 +1,6 @@
 package fr.projetiwa.covid_alert_position_ms.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,5 +38,17 @@ public class PositionService {
     public PositionService(List<Position> positionList) {
         this.positionList = positionList;
         this.lastVerify = null;
+    }
+
+    public List<Position> getPositionListByPersonId(String personId){
+        List<Position> sortedPosition = new ArrayList<>();
+        for(Position p: positionList){
+            if(personId != null && p.getUserId() != null){
+                if(p.getUserId().equals(personId)){
+                    sortedPosition.add(p);
+                }
+            }
+        }
+        return sortedPosition;
     }
 }
