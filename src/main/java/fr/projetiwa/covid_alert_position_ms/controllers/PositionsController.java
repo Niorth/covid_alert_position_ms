@@ -33,9 +33,9 @@ method for test
         Position pos = new Position();
         pos.setLongitude(location.getLongitude());
         pos.setLatitude(location.getLatitude());
+        pos.setAccuracy(location.getAccuracy());
         pos.setPositionDate(new Timestamp((new Date()).getTime()));
         pos.setUserId(user.getName());
-        pos.setAccuracy(location.getAccuracy());
         kafkaTemplate.send("addPosition",user.getName(), pos);
         return "{\"success\":1}";
     }

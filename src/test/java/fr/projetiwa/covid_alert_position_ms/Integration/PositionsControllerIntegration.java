@@ -2,28 +2,25 @@ package fr.projetiwa.covid_alert_position_ms.Integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.database.rider.core.api.connection.ConnectionHolder;
-import com.github.database.rider.core.api.dataset.DataSet;
-import com.github.database.rider.junit5.DBUnitExtension;
+import fr.projetiwa.covid_alert_position_ms.models.Coordinate;
 import fr.projetiwa.covid_alert_position_ms.models.Position;
 import fr.projetiwa.covid_alert_position_ms.models.PositionService;
 import fr.projetiwa.covid_alert_position_ms.util.Function;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.sql.DataSource;
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.util.Date;
 
 import static org.hamcrest.core.Is.is;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -59,4 +56,22 @@ public class PositionsControllerIntegration {
                 // Validate the returned fields
                 .andExpect(jsonPath("$.length()", is(2)));
     }
+
+    @Test
+    @DisplayName("POST /setPositionKafka - Found")
+    void testSetPositionKafka() throws Exception {
+
+        Principal mockPrincipal = Mockito.mock(Principal.class);
+        Mockito.when(mockPrincipal.getName()).thenReturn("testId");
+        ObjectMapper objectMapper = new ObjectMapper();
+        Coordinate nullIsland = new Coordinate((float) 0, (float) 0, (float) 0);
+        String nullIslandString = objectMapper.writeValueAsString(nullIsland);
+        mockMvc.perform(post("/positions/setPositionKafka")
+                .principal(mockPrincipal)
+                .contentType("application/json")
+                .content(nullIslandString))
+                // Validate the returned fields
+                .andExpect(jsonPath("$.success", is(1)));
+    }
 }
+
