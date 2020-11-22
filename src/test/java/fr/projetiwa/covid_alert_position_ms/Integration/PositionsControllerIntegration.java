@@ -82,7 +82,7 @@ public class PositionsControllerIntegration {
     }
 
     @Test
-    @DisplayName("GET /positions - Found")
+    @DisplayName("GET /positions/setSuspicious - Found")
     void testSetSuspicious() throws Exception {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
