@@ -1,6 +1,6 @@
 package fr.projetiwa.covid_alert_position_ms.config;
 
-import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import fr.projetiwa.covid_alert_position_ms.services.PositionService;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;

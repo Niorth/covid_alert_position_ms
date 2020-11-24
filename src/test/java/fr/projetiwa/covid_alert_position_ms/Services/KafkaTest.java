@@ -28,6 +28,10 @@ public class KafkaTest {
     @Autowired
     KafkaTemplate<String,Position> kafkaTemplate;
 
+    /**
+     * To test the Kafka service, test if the message is sent and received
+     * @throws Exception
+     */
     @Test
     public void test() throws Exception{
         Position position = new Position(1f,new Timestamp(new Date().getTime()),1f,"test", 0);

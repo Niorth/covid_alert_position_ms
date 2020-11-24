@@ -3,7 +3,7 @@ package fr.projetiwa.covid_alert_position_ms.listeners;
 
 
 import fr.projetiwa.covid_alert_position_ms.models.Position;
-import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import fr.projetiwa.covid_alert_position_ms.services.PositionService;
 import fr.projetiwa.covid_alert_position_ms.util.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 

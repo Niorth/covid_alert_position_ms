@@ -24,6 +24,10 @@ public class HttpRequestTest {
     @Autowired
     private MockMvc mockMvc;
 
+    /**
+     * to test if the route worked or not
+     * @throws Exception
+     */
     @Test
     public void shouldReturnDefaultMessage() throws Exception {
         HttpHeaders header = new HttpHeaders();
@@ -36,6 +40,10 @@ public class HttpRequestTest {
 
     }
 
+    /**
+     * to test if the route worked or not
+     * @throws Exception
+     */
     @Test
     public void setPostionToSuspicousHttpTest() throws Exception{
         HttpHeaders header = new HttpHeaders();

@@ -1,6 +1,7 @@
 package fr.projetiwa.covid_alert_position_ms.controllers;
 
 import fr.projetiwa.covid_alert_position_ms.models.*;
+import fr.projetiwa.covid_alert_position_ms.services.PositionService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.json.JSONObject;
@@ -25,9 +26,9 @@ public class PositionsController {
 
     @Autowired
     private HttpServletRequest request;
-/*
-method for test
-* */
+    /*
+    method for test
+    * */
     @PostMapping("/setPositionKafka")
     public String setPositionKafka (
             @RequestBody Coordinate location

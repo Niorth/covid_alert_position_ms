@@ -1,7 +1,7 @@
 package fr.projetiwa.covid_alert_position_ms.Integration;
 
 import com.github.database.rider.core.api.connection.ConnectionHolder;
-import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import fr.projetiwa.covid_alert_position_ms.services.PositionService;
 import fr.projetiwa.covid_alert_position_ms.util.Function;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import javax.sql.DataSource;
 
 import static org.hamcrest.core.Is.is;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

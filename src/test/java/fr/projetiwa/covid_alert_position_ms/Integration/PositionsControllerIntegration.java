@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.database.rider.core.api.connection.ConnectionHolder;
 import fr.projetiwa.covid_alert_position_ms.models.Coordinate;
 import fr.projetiwa.covid_alert_position_ms.models.Position;
-import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import fr.projetiwa.covid_alert_position_ms.services.PositionService;
 import fr.projetiwa.covid_alert_position_ms.util.Function;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,6 +45,10 @@ public class PositionsControllerIntegration {
     @Autowired
     private PositionService positionService;
 
+    /**
+     * To test if the route /positions return a list of positions or not
+     * @throws Exception
+     */
     @Test
     @DisplayName("GET /positions - Found")
     void testGetPositionsFound() throws Exception {
@@ -64,6 +68,10 @@ public class PositionsControllerIntegration {
                 .andExpect(jsonPath("$.length()", is(2)));
     }
 
+    /**
+     * To test if the route add a new position in the kafka topic
+     * @throws Exception
+     */
     @Test
     @DisplayName("POST /setPositionKafka - Found")
     void testSetPositionKafka() throws Exception {
@@ -80,6 +88,7 @@ public class PositionsControllerIntegration {
                 // Validate the returned fields
                 .andExpect(jsonPath("$.success", is(1)));
     }
+
 
     @Test
     @DisplayName("GET /positions/setSuspicious - Found")

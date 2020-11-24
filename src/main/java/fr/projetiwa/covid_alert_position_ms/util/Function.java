@@ -2,7 +2,7 @@ package fr.projetiwa.covid_alert_position_ms.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.projetiwa.covid_alert_position_ms.models.Position;
-import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import fr.projetiwa.covid_alert_position_ms.services.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,10 +23,23 @@ public class Function {
             return new SimpleDateFormat("yyyyMMdd");
         }
     };
+
+    /**
+     * Method to compare 2 dates
+     * @param date1 a date
+     * @param date2 a date
+     * @return 0 if same 1 ou -1 if not the same
+     */
     public static int compareDates(Date date1, Date date2) {
         DateFormat dateFormat = dateFormatThreadLocal.get();
         return dateFormat.format(date1).compareTo(dateFormat.format(date2));
     }
+
+    /**
+     * Transform an objet to a string
+     * @param obj an object
+     * @return a json string
+     */
     public static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);

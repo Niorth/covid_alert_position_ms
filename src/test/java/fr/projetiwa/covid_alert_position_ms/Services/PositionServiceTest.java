@@ -1,7 +1,7 @@
 package fr.projetiwa.covid_alert_position_ms.Services;
 
 import fr.projetiwa.covid_alert_position_ms.models.Position;
-import fr.projetiwa.covid_alert_position_ms.models.PositionService;
+import fr.projetiwa.covid_alert_position_ms.services.PositionService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +16,9 @@ public class PositionServiceTest {
     @Autowired
     private PositionService positionService;
 
+    /**
+     * To test if the service cleared all positions of the list
+     */
     @Test
     @DisplayName("Test clear positions")
     public void clearPositionsTest(){
@@ -26,6 +29,9 @@ public class PositionServiceTest {
         Assertions.assertEquals(0,positionService.getPositionList().size(),"should be the same");
     }
 
+    /**
+     * To test if the position was added to the list
+     */
     @Test
     @DisplayName("Test add position")
     public void addPositionTest(){
@@ -36,6 +42,10 @@ public class PositionServiceTest {
 
 
     }
+
+    /**
+     * To test if the position was remove from the list
+     */
     @Test
     @DisplayName("Test remove position")
     public void removePositionTest(){
@@ -62,7 +72,9 @@ public class PositionServiceTest {
         Assertions.assertEquals(2,positionService.getPositionList().size(),"should be the same");
     }
 
-
+    /**
+     * To test if the new (now) last verify equal to the current date (now)
+     */
     @Test
     @DisplayName("Test last verify day")
     public void lastVerifyTest(){
