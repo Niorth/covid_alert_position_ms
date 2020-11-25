@@ -89,9 +89,13 @@ public class PositionsControllerIntegration {
                 .andExpect(jsonPath("$.success", is(1)));
     }
 
-
+    /**
+     * Tests if setSuspicous makes the right choice of positions
+     *  Here no one of the positions need to be set as Suspicious
+     * @throws Exception
+     */
     @Test
-    @DisplayName("GET /positions/setSuspicious - Found")
+    @DisplayName("GET /positions/setSuspicious ")
     void testSetSuspicious() throws Exception {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);

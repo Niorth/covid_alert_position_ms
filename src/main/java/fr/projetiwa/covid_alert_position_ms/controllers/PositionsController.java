@@ -77,8 +77,10 @@ public class PositionsController {
         return true;
     }
 
-    /*
-    Ajoute au topic addSusPositions les positions des 7 derniers jours du user possedant le token
+    /**
+     * Adds to the addSusPositions kafka topic the positions of the last 7 days of the user with the token.
+     * @param token
+     * @return JSON : success and SetToSuspicious (the number of positions sent to the addSusPositions kafka topic)
      */
     @PostMapping("/setSuspicious")
     public String setPostionToSuspicous(@RequestHeader (name="Authorization") String token){
