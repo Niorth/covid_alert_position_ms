@@ -26,9 +26,12 @@ public class PositionsController {
 
     @Autowired
     private HttpServletRequest request;
-    /*
-    method for test
-    * */
+
+    /**
+     * Adds to the addPositions kafka topic the positions of the user.
+     * @param location
+     * @return JSON : success
+     */
     @PostMapping("/setPositionKafka")
     public String setPositionKafka (
             @RequestBody Coordinate location
