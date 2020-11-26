@@ -33,6 +33,7 @@ public class PositionsController {
     public String setPositionKafka (
             @RequestBody Coordinate location
     ){
+        System.out.println("coucou toi ");
         Principal user = request.getUserPrincipal();
         Position pos = new Position();
         pos.setLongitude(location.getLongitude());
